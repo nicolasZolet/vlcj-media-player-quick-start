@@ -16,12 +16,20 @@ public class MediaPlayer {
     private static MediaPlayer app;
     private final JFrame mainFrame;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         new NativeDiscovery().discover();
         System.out.println(LibVlc.libvlc_get_version());
 
         app = new MediaPlayer();
         app.start();
+
+        application().mediaPlayer().media().play("src/main/resources/media/video_sample.mp4");
+
+        Thread.sleep(3000);
+
+        application().mediaPlayer().media().play("src/main/resources/media/video_sample_2.mp4");
+
+        Thread.sleep(3000);
 
         application().mediaPlayer().media().play("src/main/resources/media/video_sample.mp4");
     }
